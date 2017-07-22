@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.DetailOrderActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_container"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctl_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:onClick="chatClient"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_chat" />
+
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_detail_order">
+
+        <LinearLayout
+            android:id="@+id/ll_container_views_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_container_label_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_left_view_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/iv_category_detail"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/ic_food" />
+
+
+                    <TextView
+                        android:id="@+id/tv_order_date_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="75dp"
+                        android:text="12:50 am"
+                        android:textColor="@color/ak_text"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_right_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:padding="4dp">
+
+                    <View
+                        android:id="@+id/v_divider1"
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/tv_product_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:text="JUGO SQUIR"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_associate_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/tv_product_name"
+                        android:layout_below="@+id/tv_product_name"
+                        android:layout_marginTop="10dp"
+                        android:text="Maria Ceballos"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ticket_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="#19877"
+                        android:textColor="@color/ak_text"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_ball_a"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/tv_associate_name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/list_marker_purple" />
+
+                    <TextView
+                        android:id="@+id/tv_address_a"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_associate_name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/iv_ball_a"
+                        android:text="Calle 108 # 98B - 76"
+                        android:textColor="@color/ak_text"
+                        android:textSize="16dp" />
+
+                    <View
+                        android:id="@+id/v_divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_alignLeft="@+id/tv_address_a"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/tv_address_a"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/tv_client_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/tv_product_name"
+                        android:layout_below="@+id/v_divider2"
+                        android:text="Juan Buenaventura"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_ball_c"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/tv_client_name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/list_marker_orange" />
+
+                    <TextView
+                        android:id="@+id/tv_address_c"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_client_name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/iv_ball_c"
+                        android:text="Calle 134 # 12B - 736"
+                        android:textColor="@color/ak_text"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_markers"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignLeft="@+id/tv_address_c"
+                        android:layout_below="@+id/tv_address_c"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+
+                        android:background="@drawable/ic_distance" />
+
+                    <TextView
+                        android:id="@+id/tv_markers_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/iv_markers"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/iv_markers"
+                        android:text="3KM." />
+
+                    <ImageView
+                        android:id="@+id/iv_clock"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/tv_address_c"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toLeftOf="@+id/tv_clock_text"
+                        android:background="@drawable/ic_time" />
+
+                    <TextView
+                        android:id="@+id/tv_clock_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/iv_markers"
+                        android:layout_alignRight="@+id/v_divider2"
+                        android:layout_marginLeft="5dp"
+                        android:text="30min." />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_container_buttons_and_states"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_container_btns"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8">
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2">
+
+                        <Button
+                            android:id="@+id/btn_accept"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/btn_aceptar"
+                            android:onClick="clickOrderAccept" />
+
+                        <Button
+                            android:id="@+id/btn_decline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/btn_cancel"
+                            android:onClick="clickOrderDecline" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_container_slides"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/btn_slide_background">
+
+                        <!--<TextView
+                            android:id="@+id/tv_order_state_delivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:text="Voy en camino al emprendedor" />
+
+                        <happyhappyinc.developer.happyexpress.utils.SlideButton
+                            android:id="@+id/sb_slide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:clickable="false"
+                            android:max="100"
+                            android:progressDrawable="@android:color/transparent"
+                            android:thumb="@drawable/btn_slide" />-->
+
+                        <com.ncorti.slidetoact.SlideToActView
+                            android:id="@+id/sb_slide_my_way_associate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="4dp"
+                            android:textDirection="rtl"
+                            app:area_margin="8dp"
+                            app:inner_color="@android:color/white"
+                            app:outer_color="@color/btn_slide"
+                            app:slider_locked="false"
+                            app:text="En camino al emprendedor"
+                            app:text_size="14sp" />
+
+                        <com.ncorti.slidetoact.SlideToActView
+                            android:id="@+id/sb_slide_here"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="4dp"
+                            android:textDirection="rtl"
+                            android:visibility="gone"
+                            app:area_margin="8dp"
+                            app:inner_color="@android:color/white"
+                            app:outer_color="@color/btn_slide"
+                            app:slider_locked="false"
+                            app:text="Estoy donde el emprendedor"
+                            app:text_size="14sp" />
+
+                        <com.ncorti.slidetoact.SlideToActView
+                            android:id="@+id/sb_slide_my_way_client"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="4dp"
+                            android:textDirection="rtl"
+                            android:visibility="gone"
+                            app:area_margin="8dp"
+                            app:inner_color="@android:color/white"
+                            app:outer_color="@color/btn_slide"
+                            app:slider_locked="false"
+                            app:text="En camino al cliente"
+                            app:text_size="14sp" />
+
+                        <com.ncorti.slidetoact.SlideToActView
+                            android:id="@+id/sb_slide_finish_order"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="4dp"
+                            android:textDirection="rtl"
+                            android:visibility="gone"
+                            app:area_margin="8dp"
+                            app:inner_color="@android:color/white"
+                            app:outer_color="@color/btn_slide"
+                            app:slider_locked="false"
+                            app:text="Pedido entregado"
+                            app:text_size="14sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+

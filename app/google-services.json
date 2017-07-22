@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "431332499861",
+    "firebase_url": "https://happyexpress-173021.firebaseio.com",
+    "project_id": "happyexpress-173021",
+    "storage_bucket": "happyexpress-173021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431332499861:android:bd768b972f2486ea",
+        "android_client_info": {
+          "package_name": "happyhappyinc.developer.happyexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431332499861-ep85jv423tqvug7giv2bsdgc4tbur6m5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "happyhappyinc.developer.happyexpress",
+            "certificate_hash": "4d72b50a5749e50bbaa8428da4f37478b3de74b3"
+          }
+        },
+        {
+          "client_id": "431332499861-hjva9ocip21qre8lrq5ip7irn850nofn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3d2g5P6lip9MeoxqOF1dY2OBylLAefNI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431332499861-hjva9ocip21qre8lrq5ip7irn850nofn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

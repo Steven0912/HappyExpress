@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">HappyExpress</string>
+    <string name="str_mail">Correo</string>
+    <string name="str_password">Contraseña</string>
+    <string name="str_btn_login">Iniciar Sesión</string>
+    <string name="str_item_orders">LISTA DE PEDIDOS</string>
+    <string name="str_item_chat">CHAT</string>
+    <string name="str_item_demo">COMO USAR LA APP</string>
+    <string name="navigation_draw_open">Open</string>
+    <string name="navigation_draw_close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_network_off">Cargando...</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="str_order_denied">Escribe tus motivos...</string>
+    <string name="str_item_logout">CERRAR SESIÓN</string>
+</resources>

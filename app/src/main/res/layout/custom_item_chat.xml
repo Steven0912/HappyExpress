@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_message_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/background_message_client"
+            android:padding="25dp"
+            android:text="Probando textosdfmklsmdlkfsdfksdfmsdlkfmsdlkfmsdlkfsdlkfsdlkfmsdlkfmsdlkfsdlkfmsldkfmsdlkfsdlkfmsldkfmsdf"
+            android:textColor="@color/ak_text"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_hour_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tv_message_chat"
+            android:layout_below="@+id/tv_message_chat"
+            android:layout_marginRight="15dp"
+            android:text="16:40" />
+
+    </RelativeLayout>
+
+</LinearLayout>
