@@ -30,6 +30,10 @@ public class Constants {
     public static final String ORDERS_LIST = "http://" + IP + "/DeliveryWebService/orders";
     public static final String CHANGE_ORDER_STATE = "http://" + IP + "/DeliveryWebService/orders";
     public static final String VALIDATE_STATE_ORDER = "http://" + IP + "/DeliveryWebService/orders_states";
+    public static final String CHAT = "http://" + IP + "/DeliveryWebService/chat";
+    public static final String CHATWITHOUTORDER = "http://" + IP + "/DeliveryWebService/chatWithoutOrder";
+    public static final String DISABLEDELIVERY = "http://" + IP + "/DeliveryWebService/disableDelivery";
+    public static final String GETSTATE_DELIVERY = "http://" + IP + "/DeliveryWebService/available";
 
     /**
      * Clave para el valor extra que representa al identificador de una meta

@@ -13,10 +13,10 @@
             android:id="@+id/tv_message_chat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:background="@drawable/background_message_client"
-            android:padding="25dp"
-            android:text="Probando textosdfmklsmdlkfsdfksdfmsdlkfmsdlkfmsdlkfsdlkfsdlkfmsdlkfmsdlkfsdlkfmsldkfmsdlkfsdlkfmsldkfmsdf"
+            android:padding="15dp"
+            android:text="Probando"
             android:textColor="@color/ak_text"
             android:textSize="14sp" />
 
@@ -27,6 +27,8 @@
             android:layout_alignRight="@+id/tv_message_chat"
             android:layout_below="@+id/tv_message_chat"
             android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
             android:text="16:40" />
 
     </RelativeLayout>

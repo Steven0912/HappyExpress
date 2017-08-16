@@ -16,4 +16,6 @@
 
     <color name="btn_slide">#00E300</color>
     <color name="btn_slide_background">#F3F3F3</color>
+
+    <color name="black_transparent">#B2000000</color>
 </resources>

@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ak_background">
+    android:background="@android:color/white">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_chat_list"
@@ -9,36 +9,35 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/content_chat"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/toolbar" />
 
     <LinearLayout
         android:id="@+id/content_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/ak_background"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_message_chat"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0.9"
+            android:background="@drawable/background_text_chat"
             android:hint="Escribe tu mensaje..."
             android:inputType="text"
             android:padding="10dp"
             android:textColor="@color/ak_text"
             android:textSize="14sp" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
+        <ImageView
+            android:id="@+id/btn_send_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="0.1"
-            android:scaleType="matrix"
-            android:onClick="sendMessage"
             android:src="@drawable/ic_send" />
 
     </LinearLayout>

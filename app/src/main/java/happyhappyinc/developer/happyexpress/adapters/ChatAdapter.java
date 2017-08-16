@@ -1,6 +1,7 @@
 package happyhappyinc.developer.happyexpress.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import happyhappyinc.developer.happyexpress.R;
+import happyhappyinc.developer.happyexpress.models.BitacoraTicketModel;
+import happyhappyinc.developer.happyexpress.preferences.PreferencesManager;
 
 /**
  * Created by Steven on 19/07/2017.
@@ -18,16 +21,18 @@ import happyhappyinc.developer.happyexpress.R;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
-    private List<String> mChatList = new ArrayList<>();
+    private List<BitacoraTicketModel> mChatList = new ArrayList<>();
     private LayoutInflater mInflater;
     private Context mContext;
+    private PreferencesManager mPref;
 
     public ChatAdapter(Context context) {
         mContext = context;
+        mPref = new PreferencesManager(mContext);
         mInflater = LayoutInflater.from(mContext);
     }
 
-    public void setChatList(List<String> list) {
+    public void setChatList(List<BitacoraTicketModel> list) {
         mChatList = list;
         notifyDataSetChanged();
     }
@@ -41,9 +46,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(ChatViewHolder holder, int position) {
 
-        String currentMessage = mChatList.get(position);
+        BitacoraTicketModel currentMessage = mChatList.get(position);
 
-        holder.mMessage.setText(currentMessage);
+        if (Integer.parseInt(mPref.checkId()) == currentMessage.getId_usuario()) {
+            // aqui se coloca el background azulito que edgar no envió
+            holder.mMessage.setBackgroundResource(R.drawable.background_message_domi);
+            holder.mMessage.setTextColor(Color.WHITE);
+        } else {
+            holder.mMessage.setBackgroundResource(R.drawable.background_message_client);
+            holder.mMessage.setTextColor(mContext.getResources().getColor(R.color.ak_text));
+        }
+        holder.mMessage.setText(currentMessage.getMsg());
+        holder.mHourMessage.setText(currentMessage.getFecha());
 
     }
 

@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:padding="20dp">
 
     <Button
         android:id="@+id/btn_close_alert_denied"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/ic_close"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_close" />
 
     <ImageView
         android:id="@+id/iv_icon_sad"
@@ -41,11 +40,11 @@
         android:layout_below="@+id/tv_title_alert"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Describe los motivos para desactivarte aquí:"
+        android:text="Recuerda que estando inactivo no podrás recibir ningún pedido."
         android:textAlignment="center"
         android:textSize="14sp" />
 
-    <android.support.design.widget.TextInputLayout
+    <!--<android.support.design.widget.TextInputLayout
         android:id="@+id/txtDisable"
         android:layout_width="0dp"
         android:layout_height="70dp"
@@ -67,7 +66,7 @@
             android:paddingRight="20dp"
             android:textSize="14sp" />
 
-    </android.support.design.widget.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>-->
 
     <Button
         android:id="@+id/btn_send_disable"
@@ -75,8 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tv_title_alert"
         android:layout_alignRight="@+id/tv_title_alert"
-        android:layout_below="@+id/txtDisable"
+        android:layout_below="@+id/tv_description_alert"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/btn_send"
         android:text="aceptar"
         android:textColor="@android:color/white"

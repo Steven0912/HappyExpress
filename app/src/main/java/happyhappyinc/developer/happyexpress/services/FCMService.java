@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
@@ -13,7 +14,9 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import happyhappyinc.developer.happyexpress.R;
+import happyhappyinc.developer.happyexpress.activities.ChatActivity;
 import happyhappyinc.developer.happyexpress.activities.MainActivity;
+import happyhappyinc.developer.happyexpress.fragments.ChatFragment;
 
 public class FCMService extends FirebaseMessagingService {
 
@@ -46,6 +49,18 @@ public class FCMService extends FirebaseMessagingService {
 
         datas = titulo.split("|");
         showNotification(titulo, texto);
+        mensaje();
+        mensajeSinPedido();
+    }
+
+    private void mensajeSinPedido() {
+        Intent i = new Intent(ChatFragment.MENSAJE);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(i);
+    }
+
+    private void mensaje() {
+        Intent i = new Intent(ChatActivity.MENSAJE);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(i);
     }
 
     private void showNotification(String title, String text) {

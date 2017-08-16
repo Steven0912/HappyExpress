@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view_root"
     android:layout_width="match_parent"
@@ -11,7 +12,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_container"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="120dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -20,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -37,19 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:onClick="chatClient"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="20dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_chat" />
-
-            </android.support.v7.widget.Toolbar>
-
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -80,12 +71,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.8"
-                    android:padding="4dp">
+                    android:padding="2dp">
 
                     <ImageView
                         android:id="@+id/iv_category_detail"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        android:layout_height="23dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/ic_food" />
@@ -101,7 +92,7 @@
                         android:layout_marginTop="75dp"
                         android:text="12:50 am"
                         android:textColor="@color/ak_text"
-                        android:textSize="14dp" />
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
 
@@ -125,12 +116,15 @@
                         android:id="@+id/tv_product_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="15dp"
-                        android:text="JUGO SQUIR"
+                        android:layout_toLeftOf="@+id/tv_ticket_number"
+                        android:layout_toStartOf="@+id/tv_ticket_number"
+                        android:text="hamburguesa vegetariana"
                         android:textAllCaps="true"
                         android:textColor="@android:color/black"
-                        android:textSize="20dp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -139,9 +133,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/tv_product_name"
                         android:layout_below="@+id/tv_product_name"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Maria Ceballos"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_ticket_number"
@@ -152,12 +146,12 @@
                         android:layout_marginTop="15dp"
                         android:text="#19877"
                         android:textColor="@color/ak_text"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/iv_ball_a"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_below="@+id/tv_associate_name"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
@@ -173,7 +167,7 @@
                         android:layout_toRightOf="@+id/iv_ball_a"
                         android:text="Calle 108 # 98B - 76"
                         android:textColor="@color/ak_text"
-                        android:textSize="16dp" />
+                        android:textSize="14sp" />
 
                     <View
                         android:id="@+id/v_divider2"
@@ -194,12 +188,12 @@
                         android:layout_alignLeft="@+id/tv_product_name"
                         android:layout_below="@+id/v_divider2"
                         android:text="Juan Buenaventura"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/iv_ball_c"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_below="@+id/tv_client_name"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
@@ -215,17 +209,16 @@
                         android:layout_toRightOf="@+id/iv_ball_c"
                         android:text="Calle 134 # 12B - 736"
                         android:textColor="@color/ak_text"
-                        android:textSize="16dp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/iv_markers"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_alignLeft="@+id/tv_address_c"
                         android:layout_below="@+id/tv_address_c"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-
                         android:background="@drawable/ic_distance" />
 
                     <TextView
@@ -234,13 +227,14 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/iv_markers"
                         android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
                         android:layout_toRightOf="@+id/iv_markers"
                         android:text="3KM." />
 
                     <ImageView
                         android:id="@+id/iv_clock"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_below="@+id/tv_address_c"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
@@ -254,6 +248,7 @@
                         android:layout_alignBottom="@+id/iv_markers"
                         android:layout_alignRight="@+id/v_divider2"
                         android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
                         android:text="30min." />
 
                 </RelativeLayout>
@@ -321,28 +316,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/btn_slide_background">
-
-                        <!--<TextView
-                            android:id="@+id/tv_order_state_delivery"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:text="Voy en camino al emprendedor" />
-
-                        <happyhappyinc.developer.happyexpress.utils.SlideButton
-                            android:id="@+id/sb_slide"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:clickable="false"
-                            android:max="100"
-                            android:progressDrawable="@android:color/transparent"
-                            android:thumb="@drawable/btn_slide" />-->
+                        android:layout_marginRight="10dp">
 
                         <com.ncorti.slidetoact.SlideToActView
                             android:id="@+id/sb_slide_my_way_associate"
@@ -408,6 +382,52 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/menufab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        fab:fab_addButtonColorNormal="?attr/colorPrimary"
+        fab:fab_addButtonSize="normal"
+        fab:fab_labelStyle="@style/Etiquetas"
+        fab:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="chat"
+            android:tag="1"
+            fab:fab_colorNormal="?attr/colorAccent"
+            fab:fab_icon="@drawable/ic_chat"
+            fab:fab_size="mini"
+            fab:fab_title="Cliente" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbAssociate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="chat"
+            android:tag="2"
+            fab:fab_colorNormal="?attr/colorAccent"
+            fab:fab_icon="@drawable/ic_chat"
+            fab:fab_size="mini"
+            fab:fab_title="Asociado" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbCustomerService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="chat"
+            android:tag="3"
+            fab:fab_colorNormal="?attr/colorAccent"
+            fab:fab_icon="@drawable/ic_chat"
+            fab:fab_size="mini"
+            fab:fab_title="Servicio al Cliente" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </android.support.design.widget.CoordinatorLayout>
 

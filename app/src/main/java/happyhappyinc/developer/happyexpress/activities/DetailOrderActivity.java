@@ -34,6 +34,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -94,6 +95,7 @@ public class DetailOrderActivity extends AppCompatActivity implements OnMapReady
     private Context mContext;
     private boolean isAsocciateRoute = true;
     private PreferencesManager mPref;
+    private FloatingActionsMenu mFab;
 
     /*
     MAPAS
@@ -212,6 +214,8 @@ public class DetailOrderActivity extends AppCompatActivity implements OnMapReady
 
     private void initComponents() {
 
+        mFab = (FloatingActionsMenu) findViewById(R.id.menufab);
+
         /* Este código es para poder moverse por el mapa sin que collapse */
         AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.abl_container);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
@@ -265,9 +269,26 @@ public class DetailOrderActivity extends AppCompatActivity implements OnMapReady
         }
     }
 
-    public void chatClient(View view) {
+    public void chat(View view) {
         ChatActivity.CURRENT_ORDER = CURRENT_ORDER;
+        String tagValue = (String) view.getTag();
+        switch (tagValue) {
+            case "1":
+                ChatActivity.DESTINATARIO = CURRENT_ORDER.getId_client();
+                ChatActivity.NAME_DESTINATARIO = CURRENT_ORDER.getFull_name_client();
+                break;
+            case "2":
+                ChatActivity.DESTINATARIO = CURRENT_ORDER.getId_associate();
+                ChatActivity.NAME_DESTINATARIO = CURRENT_ORDER.getFull_name_associate();
+                break;
+            case "3":
+                // pendiente modificar el servicio para obtener el id de servicio al cliente
+                ChatActivity.DESTINATARIO = CURRENT_ORDER.getId_customer_service();
+                ChatActivity.NAME_DESTINATARIO = "Servicio al Cliente";
+                break;
+        }
         startActivity(new Intent(mContext, ChatActivity.class));
+        mFab.collapse();
     }
 
     @Override
@@ -340,7 +361,7 @@ public class DetailOrderActivity extends AppCompatActivity implements OnMapReady
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Utils.alertError(mContext, "Verifica tu conexión a internet " + error.getMessage()).show();
+                                        Utils.alertError(mContext, "Verifica tu conexión a internet").show();
                                     }
                                 }
                         ) {

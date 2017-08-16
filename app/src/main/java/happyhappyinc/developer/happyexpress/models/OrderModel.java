@@ -1,18 +1,24 @@
 package happyhappyinc.developer.happyexpress.models;
 
-import java.util.Date;
-
 /**
  * Created by Steven on 04/07/2017.
  */
 
 public class OrderModel {
-    private int id, id_client, id_location_client, id_zone, id_state_order, id_product, id_associate, quantity_order, price;
+    private int id, id_client, id_location_client, id_zone, id_state_order, id_product, id_associate, quantity_order, price, id_customer_service;
     private String full_name_client, latitude_c, longitude_c, address_c, full_name_associate, latitude_a, longitude_a, address_a,
             zone_description, state_description, product_name, order_date;
 
     public String getOrder_date() {
         return order_date;
+    }
+
+    public int getId_customer_service() {
+        return id_customer_service;
+    }
+
+    public void setId_customer_service(int id_customer_service) {
+        this.id_customer_service = id_customer_service;
     }
 
     public void setOrder_date(String order_date) {

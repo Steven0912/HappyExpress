@@ -5,15 +5,15 @@ package happyhappyinc.developer.happyexpress.models;
  */
 
 public class BitacoraTicketModel {
-    private int id_bitacora_ticket, id_ticket, id_usuario_que_envia_mensaje, id_estado;
-    private String fecha, mensaje;
+    private int id, id_ticket, id_usuario, estado;
+    private String fecha, msg;
 
-    public int getId_bitacora_ticket() {
-        return id_bitacora_ticket;
+    public int getId() {
+        return id;
     }
 
-    public void setId_bitacora_ticket(int id_bitacora_ticket) {
-        this.id_bitacora_ticket = id_bitacora_ticket;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId_ticket() {
@@ -24,20 +24,20 @@ public class BitacoraTicketModel {
         this.id_ticket = id_ticket;
     }
 
-    public int getId_usuario_que_envia_mensaje() {
-        return id_usuario_que_envia_mensaje;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_usuario_que_envia_mensaje(int id_usuario_que_envia_mensaje) {
-        this.id_usuario_que_envia_mensaje = id_usuario_que_envia_mensaje;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public int getId_estado() {
-        return id_estado;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setId_estado(int id_estado) {
-        this.id_estado = id_estado;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public String getFecha() {
@@ -48,11 +48,11 @@ public class BitacoraTicketModel {
         this.fecha = fecha;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

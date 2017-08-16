@@ -1,8 +1,10 @@
 package happyhappyinc.developer.happyexpress.fragments;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,7 +70,6 @@ public class OrdersFragment extends Fragment implements SwipeRefreshLayout.OnRef
         // Inicializamos los componentes
         mContext = getActivity();
         mPref = new PreferencesManager(mContext);
-        Log.d("TESMAP", "token: " + mPref.getToken());
 
         initComponents(v);
 
@@ -93,7 +94,7 @@ public class OrdersFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     // Método que hace el consumo del servicio y trae los pedidos asignados al domiciliario
-    private void loadOrdersList() {
+    public void loadOrdersList() {
 
         String ruta = Constants.ORDERS_LIST + "/" + mPref.checkId();
 
@@ -164,11 +165,11 @@ public class OrdersFragment extends Fragment implements SwipeRefreshLayout.OnRef
                     break;
                 case "2":
 
-                    mImageNetwork.setImageResource(R.drawable.empty);
+                    mImageNetwork.setImageResource(R.drawable.ic_empty);
                     mImageNetwork.setVisibility(View.VISIBLE);
                     mLblNetwork.setVisibility(View.VISIBLE);
                     mListRecyclerView.setVisibility(View.GONE);
-                    mLblNetwork.setText("No tienes pedidos asignados");
+                    mLblNetwork.setText(response.getString("message"));
 
                     break;
             }

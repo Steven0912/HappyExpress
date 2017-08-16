@@ -15,20 +15,33 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import happyhappyinc.developer.happyexpress.R;
 import happyhappyinc.developer.happyexpress.fragments.ChatFragment;
 import happyhappyinc.developer.happyexpress.fragments.DemoFragment;
 import happyhappyinc.developer.happyexpress.fragments.OrdersFragment;
 import happyhappyinc.developer.happyexpress.models.UserModel;
+import happyhappyinc.developer.happyexpress.network.VolleySingleton;
 import happyhappyinc.developer.happyexpress.preferences.PreferencesManager;
+import happyhappyinc.developer.happyexpress.utils.Constants;
 import happyhappyinc.developer.happyexpress.utils.FontHelper;
+import happyhappyinc.developer.happyexpress.utils.Utils;
 
-public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity {
 
     public static UserModel SESSION_USER;
     private static FragmentManager mFragManager;
@@ -40,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private PreferencesManager mPref;
     private ActionBarDrawerToggle mToggle;
     private ToggleButton mEnabled;
+
+    private boolean mChecked = true;
 
     public static void changeFragment(Fragment f) {
         mFragManager.beginTransaction().replace(R.id.contentFragment, f).commit();
@@ -57,8 +72,14 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setUpToolbar();
         setUpNavDrawer();
 
-        setTitle(getResources().getString(R.string.str_item_orders));
+        //setTitle(getResources().getString(R.string.str_item_orders));
         mFragManager.beginTransaction().replace(R.id.contentFragment, new OrdersFragment()).commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getState();
     }
 
     private void setUpNavDrawer() {
@@ -96,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         e.printStackTrace();
                     }
 
-                    setTitle(menuItem.getTitle());
+                    //setTitle(menuItem.getTitle());
                     changeFragment(fragment);
 
                     menuItem.setChecked(true);
@@ -135,50 +156,170 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         name = (TextView) header.findViewById(R.id.tv_full_name_delivery);
         name.setText(mPref.checkName());
         mEnabled = (ToggleButton) header.findViewById(R.id.tb_disable_enable);
-        mEnabled.setChecked(true);
-        mEnabled.setOnCheckedChangeListener(this);
+
+        mEnabled.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mChecked) {
+                    changeAvailable(1);
+                } else {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                    final View viewAlert = inflater.inflate(R.layout.custom_alert_disable, null);
+                    builder.setView(viewAlert);
+
+                    builder.create();
+                    builder.setCancelable(false);
+                    final AlertDialog alertDialog = builder.show();
+
+
+                    Button btnSendDisable = (Button) viewAlert.findViewById(R.id.btn_send_disable);
+                    btnSendDisable.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                            changeAvailable(2);
+
+                        /*EditText reasonsDecline = (EditText) viewAlert.findViewById(R.id.et_reasons_disable);
+                        String reasons = reasonsDecline.getText().toString();
+                        if (!reasons.equals("")) {
+                            //consumeWebServiceChangeStateBtns(2, reasons);
+                            mEnabled.setBackgroundResource(R.drawable.btn_disable_enable);
+                            alertDialog.dismiss();
+
+                            changeAvailable(2);
+                        } else {
+                            reasonsDecline.setError("Diligencia los motivos!!!");
+                        }*/
+
+                        }
+                    });
+
+                    Button btnCloseAlert = (Button) viewAlert.findViewById(R.id.btn_close_alert_denied);
+                    btnCloseAlert.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getState();
+                            alertDialog.dismiss();
+                        }
+                    });
+                }
+            }
+        });
+        //mEnabled.setOnCheckedChangeListener(this);
 
         mFragManager = getSupportFragmentManager();
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked) {
-            mEnabled.setBackgroundResource(R.drawable.btn_enable_disable);
-        } else {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            LayoutInflater inflater = MainActivity.this.getLayoutInflater();
-            final View viewAlert = inflater.inflate(R.layout.custom_alert_disable, null);
-            builder.setView(viewAlert);
+    private void changeAvailable(final int state) {
 
-            builder.create();
-            builder.setCancelable(false);
-            final AlertDialog alertDialog = builder.show();
+        HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
+        // Guardamos en un HashMap los 3 parámetros necesarios para hacer el consumo del login
+        map.put("id_usuario", mPref.checkId());
+        map.put("fecha", Utils.getCurrentDateTime());
+        map.put("estado", "" + state);
 
-            Button btnSendDisable = (Button) viewAlert.findViewById(R.id.btn_send_disable);
-            btnSendDisable.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EditText reasonsDecline = (EditText) viewAlert.findViewById(R.id.et_reasons_disable);
-                    String reasons = reasonsDecline.getText().toString();
-                    if (!reasons.equals("")) {
-                        //consumeWebServiceChangeStateBtns(2, reasons);
-                        mEnabled.setBackgroundResource(R.drawable.btn_disable_enable);
-                        alertDialog.dismiss();
-                    } else {
-                        reasonsDecline.setError("Diligencia los motivos!!!");
+        // Armamos el JSONObject con los datos que serán enviados al servidor
+        JSONObject jobject = new JSONObject(map);
+        // Hacemos el consumo respectivo del login checkLogin
+
+        VolleySingleton.
+                getInstance(mContext).
+                addToRequestQueue(
+
+                        new JsonObjectRequest(
+                                Request.Method.POST,
+                                Constants.DISABLEDELIVERY,
+                                jobject,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        // nothing
+                                        processingResponse(response, 1);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Utils.alertError(mContext, "Verifica tu conexión a internet").show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("Authorizationh", Utils.md5("H*2017*" + Utils.getDay()));
+                                return params;
+                            }
+                        }
+                );
+    }
+
+    private void processingResponse(JSONObject response, int flag) {
+        try {
+            String state = response.getString("state");
+
+            switch (state) {
+                case "1":
+                    // TODO Here
+                    if (flag == 1) {
+                        changeFragment(new OrdersFragment());
+                        mNavigationDrawer.setCheckedItem(R.id.itemOrders);
                     }
-                }
-            });
 
-            Button btnCloseAlert = (Button) viewAlert.findViewById(R.id.btn_close_alert_denied);
-            btnCloseAlert.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alertDialog.dismiss();
-                }
-            });
+                    changeBtnState(response.getString("estado"));
+                    break;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+    }
+
+    private void changeBtnState(String estado) {
+        if (Integer.parseInt(estado) == 1) {
+            mChecked = true;
+            mEnabled.setBackgroundResource(R.drawable.btn_enable_disable);
+            mEnabled.setChecked(true);
+        } else if (Integer.parseInt(estado) == 2) {
+            mChecked = false;
+            mEnabled.setBackgroundResource(R.drawable.btn_disable_enable);
+            mEnabled.setChecked(false);
+        }
+    }
+
+    private void getState() {
+
+        VolleySingleton.
+                getInstance(mContext).
+                addToRequestQueue(
+
+                        new JsonObjectRequest(
+                                Request.Method.GET,
+                                Constants.GETSTATE_DELIVERY + "/" + mPref.checkId(),
+                                null,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        // nothing
+                                        processingResponse(response, 2);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Utils.alertError(mContext, "Verifica tu conexión a internet").show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("Authorizationh", Utils.md5("H*2017*" + Utils.getDay()));
+                                return params;
+                            }
+                        }
+                );
     }
 }

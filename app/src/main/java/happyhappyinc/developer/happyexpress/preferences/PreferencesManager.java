@@ -14,8 +14,6 @@ public class PreferencesManager {
     private static final String PREF_NAME = "AppDeliveryPref";
     private static final String IS_LOGIN = "isLoggedIn";
     private static final String ID_SESSION = "idUserSession";
-    /*private static final String IS_BTNS_STATE = "idButtonsState";
-    private static final String ID_SLIDES_STATE = "idSlidesState";*/
     private static final String NAME_SESSION = "nameUserSession";
     private static final String TOKEN_SESSION = "idUserTokenSession";
 
@@ -42,24 +40,6 @@ public class PreferencesManager {
     public boolean checkLogin() {
         return mShared.getBoolean(IS_LOGIN, false);
     }
-
-    /*public boolean getIsBtnsState() {
-        return mShared.getBoolean(IS_BTNS_STATE, true);
-    }
-
-    public void setIsBtnsState(boolean state) {
-        mEditor.putBoolean(IS_BTNS_STATE, state);
-        mEditor.apply();
-    }
-
-    public int getIdSlidesState() {
-        return mShared.getInt(ID_SLIDES_STATE, 0);
-    }
-
-    public void setIdSlidesState(int id) {
-        mEditor.putInt(ID_SLIDES_STATE, id);
-        mEditor.apply();
-    }*/
 
     public String getToken() {
         return mShared.getString(TOKEN_SESSION, "null");
