@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -96,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         // Guardamos en un HashMap los 3 parámetros necesarios para hacer el consumo del login
         map.put("mail", mail);
         map.put("password", password);
-        map.put("token", "testing");
+        map.put("token", mPref.getToken());
 
         // Armamos el JSONObject con los datos que serán enviados al servidor
         JSONObject jobject = new JSONObject(map);

@@ -1,23 +1,17 @@
 package happyhappyinc.developer.happyexpress.activities;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 
 import happyhappyinc.developer.happyexpress.R;
-import happyhappyinc.developer.happyexpress.SVG.SvgSoftwareLayerSetter;
 import happyhappyinc.developer.happyexpress.utils.Utils;
-
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

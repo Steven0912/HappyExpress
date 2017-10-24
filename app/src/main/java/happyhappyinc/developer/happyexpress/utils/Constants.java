@@ -20,7 +20,8 @@ public class Constants {
     /**
      * Dirección IP del SERVIDOR
      */
-    private static final String IP = "happyhappyinc.com/ws";
+    //private static final String IP = "happyhappyinc.com/ws";
+    private static final String IP = "stevenceballosdevelop.000webhostapp.com/ws";
     /**
      * URLs del Web Service
      */
